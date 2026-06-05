@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#8eb9d6"/>
+      <stop offset="0.45" stop-color="#d7e7f1"/>
+      <stop offset="1" stop-color="#fff2db"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" x2="1">
+      <stop offset="0" stop-color="#45647d"/>
+      <stop offset="1" stop-color="#22374e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <circle cx="1280" cy="180" r="86" fill="#f4b64d" opacity=".9"/>
+  <path d="M0 470 C220 410 310 460 505 410 C715 356 820 408 1018 360 C1226 310 1360 362 1600 305 L1600 900 L0 900 Z" fill="#bac8d2"/>
+  <path d="M0 520 C280 460 450 505 670 470 C900 434 1040 470 1260 420 C1410 386 1510 392 1600 374 L1600 900 L0 900 Z" fill="#8da0ad"/>
+  <rect x="155" y="355" width="315" height="365" fill="#efe6dc"/>
+  <rect x="210" y="310" width="210" height="70" fill="#b7192b"/>
+  <rect x="515" y="285" width="370" height="435" fill="url(#glass)"/>
+  <rect x="925" y="390" width="385" height="330" fill="#e4dacd"/>
+  <rect x="1010" y="325" width="220" height="85" fill="#7f1021"/>
+  <g fill="#ffffff" opacity=".75">
+    <rect x="190" y="410" width="52" height="44"/>
+    <rect x="278" y="410" width="52" height="44"/>
+    <rect x="366" y="410" width="52" height="44"/>
+    <rect x="190" y="500" width="52" height="44"/>
+    <rect x="278" y="500" width="52" height="44"/>
+    <rect x="366" y="500" width="52" height="44"/>
+    <rect x="558" y="340" width="56" height="330"/>
+    <rect x="646" y="340" width="56" height="330"/>
+    <rect x="734" y="340" width="56" height="330"/>
+    <rect x="822" y="340" width="32" height="330"/>
+    <rect x="975" y="455" width="58" height="48"/>
+    <rect x="1070" y="455" width="58" height="48"/>
+    <rect x="1165" y="455" width="58" height="48"/>
+    <rect x="1260" y="455" width="28" height="48"/>
+  </g>
+  <path d="M0 720 L1600 720 L1600 900 L0 900 Z" fill="#304e3f"/>
+  <path d="M500 900 C650 780 870 750 1110 720 L1285 720 C1070 770 900 835 810 900 Z" fill="#d9c7a0"/>
+  <g fill="#192837" opacity=".5">
+    <ellipse cx="305" cy="750" rx="48" ry="12"/>
+    <ellipse cx="1180" cy="740" rx="56" ry="13"/>
+    <ellipse cx="1380" cy="770" rx="44" ry="12"/>
+  </g>
+</svg>

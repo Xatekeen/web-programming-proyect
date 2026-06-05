@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sejong University | Admissions</title><link rel="stylesheet" href="styles.css"></head>
+  <body data-page="admissions">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header"><div class="utility-bar"><div class="container utility-inner"><span>Sejong University Webpage Reproduction</span><nav aria-label="Utility navigation"><a href="news.html">Notices</a><a href="contact.html">Contact</a><button class="text-button" id="languageToggle" type="button">KR</button></nav></div></div><div class="container nav-shell"><a class="brand" href="index.html"><span class="brand-mark">S</span><span><strong>SEJONG</strong><small>UNIVERSITY</small></span></a><button class="icon-button menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button><nav class="primary-nav" id="primaryNav" aria-label="Primary navigation"><a href="about.html">About</a><a href="academics.html">Academics</a><a href="admissions.html">Admissions</a><a href="research.html">Research</a><a href="news.html">News</a></nav><button class="search-button" id="openSearch" type="button" aria-label="Open site search"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.3-4.3m2.3-5.2a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"></path></svg>Search</button></div></header>
+    <main id="main">
+      <section class="page-hero admissions-page-hero"><div class="container"><p class="eyebrow">Admissions</p><h1>Join Sejong University</h1><p>Sejong welcomes international students through English-track and Korean-track programs at both undergraduate and graduate levels.</p></div></section>
+      <section class="section feature-band page-feature">
+        <div class="container admissions-layout">
+          <div class="admissions-panel">
+            <p class="eyebrow">English Track — How to Apply</p>
+            <h2>Four Steps to Enrollment</h2>
+            <ol class="steps">
+              <li><span>1</span>Choose your program (Undergraduate, Graduate, or Language)</li>
+              <li><span>2</span>Review entry requirements and deadlines for your track</li>
+              <li><span>3</span>Prepare documents — transcripts, language scores, personal statement</li>
+              <li><span>4</span>Submit your application through the Sejong admissions portal</li>
+            </ol>
+            <div style="margin-top:24px;padding:18px;background:rgba(255,255,255,.1);border-radius:8px">
+              <p style="margin:0;font-weight:800;font-size:.9rem">Available Tracks</p>
+              <p style="margin:6px 0 0;font-size:.9rem;opacity:.85">English Track · Korean Track · Korean Language Program · Other Programs (SISP, Exchange)</p>
+            </div>
+          </div>
+          <form class="inquiry-form" id="inquiryForm">
+            <h3>Request Information</h3>
+            <label>Full name<input name="name" type="text" placeholder="Your full name" required></label>
+            <label>Program of interest
+              <select name="program" required>
+                <option value="">Select a program</option>
+                <optgroup label="Undergraduate (English Track)">
+                  <option>AI Convergence</option>
+                  <option>Computer Science &amp; Engineering</option>
+                  <option>Business Administration</option>
+                  <option>Hotel &amp; Tourism Management</option>
+                  <option>Aerospace Engineering</option>
+                  <option>Film Art</option>
+                </optgroup>
+                <optgroup label="Graduate">
+                  <option>Graduate School of Business (MBA)</option>
+                  <option>Graduate School of Tourism</option>
+                  <option>Graduate School of Interdisciplinary Arts</option>
+                  <option>Master of Global Affairs</option>
+                </optgroup>
+                <optgroup label="Special Programs">
+                  <option>Korean Language Program</option>
+                  <option>International Summer Program (SISP)</option>
+                  <option>Exchange / Visiting Student</option>
+                </optgroup>
+              </select>
+            </label>
+            <label>Email address<input name="email" type="email" placeholder="you@example.com" required></label>
+            <label>Nationality<input name="nationality" type="text" placeholder="Country of citizenship"></label>
+            <button class="button primary full" type="submit">Send Inquiry</button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container two-column">
+          <div><p class="eyebrow">Requirements</p><h2>What You Need to Apply</h2><p class="section-copy">Requirements vary by program track. English-track programs require proof of English proficiency (TOEFL, IELTS, or equivalent). All applicants must provide official academic transcripts.</p></div>
+          <div class="info-list">
+            <article><h3>English Track — Undergraduate</h3><p>High school diploma or equivalent, English proficiency certificate, personal statement, and two letters of recommendation.</p></article>
+            <article><h3>English Track — Graduate</h3><p>Bachelor's degree (or equivalent), English proficiency, research proposal or statement of purpose, and academic transcripts.</p></article>
+            <article><h3>Korean Language Program</h3><p>Open to international students of any level. No prior Korean knowledge required for beginner classes. Short-term and semester-long options available.</p></article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="index.html"><span class="brand-mark">S</span><span><strong>SEJONG</strong><small>UNIVERSITY</small></span></a><p>05006 209, Neungdong-ro, Gwangjin-gu, Seoul</p><p>Tel: +82 02-3408-3114 · webmaster@sejong.ac.kr</p></div><div><h2>Programs</h2><p><a href="academics.html">Undergraduate</a></p><p><a href="academics.html">Graduate</a></p><p><a href="research.html">Research</a></p></div><div><h2>Contact</h2><p><a href="contact.html">Campus Map</a></p><p><a href="news.html">News &amp; Notices</a></p></div></div></footer>
+    <dialog class="search-dialog" id="searchDialog" aria-labelledby="searchTitle"><form method="dialog"><button class="icon-button close-button" type="submit" aria-label="Close search">x</button></form><h2 id="searchTitle">Search Sejong University</h2><label>Search term<input id="siteSearch" type="search" placeholder="Try admissions, research, programs..." autocomplete="off"></label><ul id="searchResults" aria-live="polite"></ul></dialog><button class="back-top" id="backTop" type="button" aria-label="Back to top">^</button><script src="script.js"></script>
+  </body>
+</html>

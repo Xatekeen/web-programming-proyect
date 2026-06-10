@@ -1,18 +1,18 @@
-/* data-loader.js — fetches and caches JSON datasets */
+/* data-loader.js — provides the bundled datasets.
+   Loaded as plain <script> globals (data/*.js -> window.SEJONG_DATA)
+   instead of fetch(), so the app works when index.html is opened
+   directly via file:// (browsers block fetch() of local files there). */
 const DataLoader = (() => {
   let cache = null;
-  // Captured synchronously at script load time (currentScript is null later).
-  const DATA_BASE = new URL('../data/', document.currentScript.src);
 
   async function loadAll() {
     if (cache) return cache;
-    const base = DATA_BASE;
-    const [restaurants, clubs, services] = await Promise.all([
-      fetch(new URL('restaurants.json', base)).then(r => r.json()),
-      fetch(new URL('clubs.json', base)).then(r => r.json()),
-      fetch(new URL('services.json', base)).then(r => r.json()),
-    ]);
-    cache = { restaurants, clubs, services };
+    const data = window.SEJONG_DATA || {};
+    cache = {
+      restaurants: data.restaurants || [],
+      clubs: data.clubs || [],
+      services: data.services || [],
+    };
     return cache;
   }
 

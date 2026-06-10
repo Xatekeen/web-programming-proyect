@@ -12,6 +12,7 @@ const MapHandler = (() => {
     bank: { emoji: '🏦', color: '#172033' },
     atm: { emoji: '💳', color: '#172033' },
     'convenience-store': { emoji: '🏪', color: '#d99a2b' },
+    mart: { emoji: '🛒', color: '#d99a2b' },
     immigration: { emoji: '🛂', color: '#627086' },
     housing: { emoji: '🏠', color: '#b7192b' },
     office: { emoji: '🏢', color: '#172033' },
@@ -47,7 +48,7 @@ const MapHandler = (() => {
     markersLayer.clearLayers();
     items.forEach(item => {
       if (!item.coords) return;
-      const typeKey = (item.type && item.type[0]) || item.category || item.typeOf || 'default';
+      const typeKey = (Array.isArray(item.type) ? item.type[0] : item.type) || item.category || 'default';
       const marker = L.marker([item.coords.lat, item.coords.lng], { icon: makeIcon(typeKey) });
       const title = item.nameEnglish ? `${item.name} (${item.nameEnglish})` : item.name;
       marker.bindPopup(`<strong>${title}</strong>`);

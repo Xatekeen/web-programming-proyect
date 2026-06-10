@@ -1,4 +1,5 @@
-[
+window.SEJONG_DATA = window.SEJONG_DATA || {};
+window.SEJONG_DATA.services = [
   {"id":"s1","name":"Konkuk University Hospital","type":"hospital","address":"120-1 Neungdong-ro, Gwangjin-gu","distance_meters":900,"phone":"02-2030-5114","hours":{"mon-fri":"08:30-17:30","sat":"08:30-12:30"},"coords":{"lat":37.5410,"lng":127.0710},"tags":["emergency","english-speaking-staff"],"notes":"Major university hospital with international clinic and English-speaking staff."},
   {"id":"s2","name":"Sejong Campus Health Center","type":"clinic","address":"Sejong University main campus","distance_meters":50,"phone":"02-3408-3333","hours":{"mon-fri":"09:00-17:00"},"coords":{"lat":37.5503,"lng":127.0743},"tags":["on-campus","first-aid"],"notes":"On-campus clinic for basic checkups, first aid, and health consultations for students."},
   {"id":"s3","name":"KB Kookmin Bank - Gunja Branch","type":"bank","address":"30 Gunja-ro, Gwangjin-gu","distance_meters":450,"phone":"02-1588-9999","hours":{"mon-fri":"09:00-16:00"},"coords":{"lat":37.5489,"lng":127.0761},"tags":["atm","foreign-account-opening"],"notes":"Bank branch that assists international students with account opening (ARC required)."},
@@ -14,3 +15,4 @@
   {"id":"s13","name":"Gunja Mart","type":"mart","address":"Near Sejong University back gate, ~6 min walk","distance_meters":450,"phone":"-","hours":{"mon-sun":"09:30-23:30"},"coords":{"lat":37.5524,"lng":127.0722},"tags":["mart","groceries"],"notes":"Local grocery store with dried goods, produce, meat, fish and drinks — 6 minutes from the back gate."},
   {"id":"s14","name":"E-mart (Konkuk Branch)","type":"mart","address":"In front of Konkuk University Station Exit 5","distance_meters":1400,"phone":"-","hours":{"mon-sun":"10:00-23:00 (closed 2nd & 4th Sun)"},"coords":{"lat":37.5407,"lng":127.0697},"tags":["supermarket","groceries","large-store"],"notes":"Korea's #1 large supermarket — everything in one place, great variety, competitive prices and discounts. Don't miss No Brand, and after 9PM there are clearance sales!"}
 ]
+;

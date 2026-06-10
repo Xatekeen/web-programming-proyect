@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sejong International Student Helper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="back-bar">
+    <a href="../index.html">&larr; Sejong University</a>
+  </div>
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand-icon">🧭</span>
+      <div>
+        <h1>Sejong Helper</h1>
+        <p>International Student Guide · Gwangjin-gu, Seoul</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="search-wrap">
+        <input type="search" id="searchInput" placeholder="Search restaurants, clubs, services...">
+      </div>
+      <button id="darkToggle" class="icon-btn" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Categories">
+    <button class="tab is-active" data-tab="restaurants" role="tab" aria-selected="true">🍜 Restaurants</button>
+    <button class="tab" data-tab="clubs" role="tab" aria-selected="false">🎉 Clubs</button>
+    <button class="tab" data-tab="services" role="tab" aria-selected="false">🏥 Services</button>
+    <button class="tab" data-tab="favorites" role="tab" aria-selected="false">⭐ Favorites</button>
+    <button class="map-toggle-btn" id="mapToggle" type="button">🗺️ Map</button>
+  </nav>
+
+  <main class="layout">
+    <section class="map-pane" id="mapPane">
+      <div id="map"></div>
+    </section>
+
+    <section class="content-pane">
+      <aside class="filters" id="filters">
+        <h2>Filters</h2>
+
+        <div class="filter-group" data-applies="restaurants">
+          <label>Budget (max ₩)
+            <input type="range" id="budgetSlider" min="1" max="4" step="1" value="4">
+            <span id="budgetLabel">Any</span>
+          </label>
+
+          <fieldset>
+            <legend>Cuisine</legend>
+            <div class="checkbox-grid" id="cuisineFilters"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Dietary</legend>
+            <div class="checkbox-grid" id="dietaryFilters"></div>
+          </fieldset>
+        </div>
+
+        <label class="distance-filter">Max distance: <span id="distanceLabel">2 km</span>
+          <input type="range" id="distanceSlider" min="100" max="2000" step="100" value="2000">
+        </label>
+
+        <label class="sort-select">Sort by
+          <select id="sortSelect">
+            <option value="distance">Distance</option>
+            <option value="rating">Rating</option>
+            <option value="price">Price (low to high)</option>
+          </select>
+        </label>
+
+        <button id="resetFilters" class="text-btn">Reset filters</button>
+      </aside>
+
+      <div class="cards-area">
+        <p class="results-count" id="resultsCount"></p>
+        <div class="cards-grid" id="cardsGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <button class="chat-fab" id="chatFab" aria-label="Open AI assistant" title="Ask the Sejong Helper assistant">💬</button>
+  <div class="chat-panel" id="chatPanel" aria-hidden="true">
+    <div class="chat-header">
+      <strong>Sejong Helper Assistant</strong>
+      <button class="modal-close" id="chatClose" aria-label="Close chat">×</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg bot">Hi! Ask me about restaurants, clubs, or services near campus — e.g. "vegan food near campus" or "halal restaurants under ₩₩".</div>
+    </div>
+    <form class="chat-input-row" id="chatForm">
+      <input type="text" id="chatInput" placeholder="Ask a question..." autocomplete="off">
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="detailModal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/data-loader.js"></script>
+  <script src="js/filter-engine.js"></script>
+  <script src="js/map-handler.js"></script>
+  <script src="js/ui-manager.js"></script>
+  <script src="js/ai-assistant.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

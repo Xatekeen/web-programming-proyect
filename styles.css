@@ -119,19 +119,15 @@ select {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  min-width: max-content;
-  order: 1;
+  white-space: nowrap;
 }
 
 .brand-mark {
-  display: grid;
   width: 42px;
   height: 42px;
-  place-items: center;
-  color: var(--white);
-  background: var(--red);
-  border-radius: 50%;
-  font-weight: 800;
+  object-fit: contain;
+  border-radius: 0;
+  background: none;
 }
 
 .brand strong,

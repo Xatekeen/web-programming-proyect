@@ -30,7 +30,7 @@ const heroKo = {
   contact:    { eyebrow: "연락처",                  h1: "대학교 방문 및 연락",                     sub: "연락처 정보는 사이트를 완성하고 재현물이 실제 대학 웹 경험처럼 느껴지게 합니다." },
 };
 
-const navKo = { About: "소개", Academics: "학사", Admissions: "입학", Research: "연구", Life: "학교생활", News: "뉴스" };
+const navKo = { About: "소개", Academics: "학사", Admissions: "입학", Research: "연구", Life: "학교생활", News: "뉴스", Helper: "도우미" };
 const navEn = {};
 
 let isKorean = false;

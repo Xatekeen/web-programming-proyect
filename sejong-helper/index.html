@@ -34,6 +34,13 @@
     <button class="tab" data-tab="clubs" role="tab" aria-selected="false">🎉 Clubs</button>
     <button class="tab" data-tab="services" role="tab" aria-selected="false">🏥 Services</button>
     <button class="tab" data-tab="favorites" role="tab" aria-selected="false">⭐ Favorites</button>
+    <button class="tab" data-tab="guides" role="tab" aria-selected="false">📚 Guides</button>
+    <button class="tab" data-tab="reviews" role="tab" aria-selected="false">📝 Reviews</button>
+    <button class="tab" data-tab="budget" role="tab" aria-selected="false">💰 Budget</button>
+    <button class="tab" data-tab="compare" role="tab" aria-selected="false">🔄 Compare</button>
+    <button class="tab" data-tab="dashboard" role="tab" aria-selected="false">📊 Dashboard</button>
+    <button class="tab" data-tab="collections" role="tab" aria-selected="false">📌 Collections</button>
+    <button class="tab" data-tab="settings" role="tab" aria-selected="false">⚙️ Settings</button>
     <button class="map-toggle-btn" id="mapToggle" type="button">🗺️ Map</button>
   </nav>
 
@@ -63,6 +70,18 @@
           </fieldset>
         </div>
 
+        <label class="open-now-toggle">
+          <input type="checkbox" id="openNowToggle"> ⏰ Open now only
+        </label>
+        <label class="sort-select">Time of day
+          <select id="timeOfDaySelect">
+            <option value="">Any time</option>
+            <option value="past-midnight">Past midnight (00:00-05:00)</option>
+            <option value="early-morning">Early morning (06:00-10:00)</option>
+            <option value="lunch">Lunch hours (11:00-14:00)</option>
+          </select>
+        </label>
+
         <label class="distance-filter">Max distance: <span id="distanceLabel">2 km</span>
           <input type="range" id="distanceSlider" min="100" max="2000" step="100" value="2000">
         </label>
@@ -72,6 +91,7 @@
             <option value="distance">Distance</option>
             <option value="rating">Rating</option>
             <option value="price">Price (low to high)</option>
+            <option value="closing">Closing soon</option>
           </select>
         </label>
 
@@ -79,8 +99,12 @@
       </aside>
 
       <div class="cards-area">
+        <div class="guide-search-row" id="guideSearchRow" style="display:none;">
+          <input type="search" id="guideSearchInput" class="guide-search" placeholder="Search this section...">
+        </div>
         <p class="results-count" id="resultsCount"></p>
         <div class="cards-grid" id="cardsGrid"></div>
+        <div id="featurePanel" class="feature-panel" style="display:none;"></div>
       </div>
     </section>
   </main>
@@ -111,8 +135,10 @@
   <script src="data/restaurants.js"></script>
   <script src="data/clubs.js"></script>
   <script src="data/services.js"></script>
+  <script src="data/guides.js"></script>
   <script src="js/data-loader.js"></script>
   <script src="js/filter-engine.js"></script>
+  <script src="js/features.js"></script>
   <script src="js/map-handler.js"></script>
   <script src="js/ui-manager.js"></script>
   <script src="js/ai-assistant.js"></script>

@@ -4,9 +4,15 @@
     data: null,
     activeTab: 'restaurants',
     query: '',
-    filters: { maxPrice: 4, maxDistance: 2000, cuisines: [], dietary: [] },
-    sortBy: 'distance'
+    filters: { maxPrice: 4, maxDistance: 2000, cuisines: [], dietary: [], openNow: false, timeOfDay: '' },
+    sortBy: 'distance',
+    guideQuery: '',
+    compareSelection: [],
+    reviewFilters: {},
+    budgetState: {}
   };
+
+  const FEATURE_TABS = ['guides', 'reviews', 'budget', 'compare', 'dashboard', 'collections', 'settings'];
 
   const cardsGrid = document.getElementById('cardsGrid');
   const resultsCount = document.getElementById('resultsCount');
@@ -28,6 +34,12 @@
   const modalOverlay = document.getElementById('modalOverlay');
   const modalClose = document.getElementById('modalClose');
   const modalContent = document.getElementById('modalContent');
+  const openNowToggle = document.getElementById('openNowToggle');
+  const timeOfDaySelect = document.getElementById('timeOfDaySelect');
+  const featurePanel = document.getElementById('featurePanel');
+  const guideSearchRow = document.getElementById('guideSearchRow');
+  const guideSearchInput = document.getElementById('guideSearchInput');
+  const layout = document.querySelector('.layout');
 
   UIManager.initTheme();
   MapHandler.init();
@@ -63,6 +75,11 @@
   }
 
   function render() {
+    if (FEATURE_TABS.includes(state.activeTab)) {
+      renderFeatureTab();
+      return;
+    }
+
     let items = getCurrentItems();
     items = FilterEngine.search(items, state.query);
 
@@ -72,6 +89,9 @@
     } else if (state.activeTab !== 'favorites') {
       items = FilterEngine.sortItems(items, 'distance');
     }
+
+    if (state.filters.openNow) items = FilterEngine.filterOpenNow(items);
+    if (state.filters.timeOfDay) items = FilterEngine.filterTimeOfDay(items, state.filters.timeOfDay);
 
     if (state.activeTab === 'favorites') {
       cardsGrid.innerHTML = items.length
@@ -84,6 +104,65 @@
     resultsCount.textContent = `${items.length} result${items.length === 1 ? '' : 's'}`;
     MapHandler.setMarkers(items, openModal);
     attachCardEvents();
+  }
+
+  function getAllItemsFlat() {
+    return [
+      ...state.data.restaurants.map(i => ({ ...i, _kind: 'restaurants' })),
+      ...state.data.clubs.map(i => ({ ...i, _kind: 'clubs' })),
+      ...state.data.services.map(i => ({ ...i, _kind: 'services' }))
+    ];
+  }
+
+  function renderFeatureTab() {
+    layout.classList.add('feature-mode');
+    mapPane.style.display = 'none';
+    filtersPanel.style.display = 'none';
+    cardsGrid.style.display = 'none';
+    resultsCount.style.display = 'none';
+    guideSearchRow.style.display = state.activeTab === 'guides' ? 'block' : 'none';
+    featurePanel.style.display = 'block';
+
+    const all = getAllItemsFlat();
+    switch (state.activeTab) {
+      case 'guides':
+        FeaturesUI.renderGuides(featurePanel, state.data, state.guideQuery);
+        break;
+      case 'reviews':
+        FeaturesUI.renderReviews(featurePanel, all, state.reviewFilters);
+        break;
+      case 'budget':
+        FeaturesUI.renderBudget(featurePanel, state.data, state.budgetState);
+        break;
+      case 'compare':
+        FeaturesUI.renderCompare(featurePanel, all, state.compareSelection);
+        break;
+      case 'dashboard':
+        FeaturesUI.renderDashboard(featurePanel, state.data, (query) => {
+          // jump to restaurants/services tab filtered by this place's name
+          const tabBtn = [...tabs].find(t => t.dataset.tab === 'restaurants');
+          tabBtn.click();
+          searchInput.value = query;
+          state.query = query;
+          render();
+        });
+        break;
+      case 'collections':
+        FeaturesUI.renderCollections(featurePanel, all, () => renderFeatureTab());
+        break;
+      case 'settings':
+        FeaturesUI.renderSettings(featurePanel, () => render());
+        break;
+    }
+  }
+
+  function exitFeatureMode() {
+    layout.classList.remove('feature-mode');
+    mapPane.style.display = '';
+    cardsGrid.style.display = '';
+    resultsCount.style.display = '';
+    guideSearchRow.style.display = 'none';
+    featurePanel.style.display = 'none';
   }
 
   // helper to render a single card via UIManager's batch renderer
@@ -121,6 +200,21 @@
     modalContent.innerHTML = UIManager.renderModal(item, kind);
     modalOverlay.classList.add('is-open');
     MapHandler.focusOn(item);
+
+    const noteEl = modalContent.querySelector('.modal-note');
+    if (noteEl) {
+      noteEl.addEventListener('change', () => CollectionsManager.setNote(item.id, noteEl.value));
+    }
+    const colSelect = modalContent.querySelector('.modal-collection-select');
+    if (colSelect) {
+      colSelect.addEventListener('change', () => {
+        if (colSelect.value) {
+          CollectionsManager.addPlace(colSelect.value, item.id);
+          colSelect.value = '';
+          alert('Saved to collection!');
+        }
+      });
+    }
   }
 
   modalClose.addEventListener('click', () => modalOverlay.classList.remove('is-open'));
@@ -133,9 +227,32 @@
     tab.setAttribute('aria-selected','true');
     state.activeTab = tab.dataset.tab;
     filterGroup.style.display = state.activeTab === 'restaurants' ? 'block' : 'none';
-    render();
+    if (FEATURE_TABS.includes(state.activeTab)) {
+      renderFeatureTab();
+    } else {
+      exitFeatureMode();
+      filtersPanel.style.display = '';
+      render();
+      MapHandler.invalidateSize();
+    }
   }));
   filterGroup.style.display = 'block';
+
+  // Open Now / Time of day filters
+  openNowToggle.addEventListener('change', () => {
+    state.filters.openNow = openNowToggle.checked;
+    render();
+  });
+  timeOfDaySelect.addEventListener('change', () => {
+    state.filters.timeOfDay = timeOfDaySelect.value;
+    render();
+  });
+
+  // Guides search
+  guideSearchInput.addEventListener('input', () => {
+    state.guideQuery = guideSearchInput.value;
+    renderFeatureTab();
+  });
 
   // Search
   searchInput.addEventListener('input', () => {
@@ -169,12 +286,14 @@
     render();
   });
   resetBtn.addEventListener('click', () => {
-    state.filters = { maxPrice: 4, maxDistance: 2000, cuisines: [], dietary: [] };
+    state.filters = { maxPrice: 4, maxDistance: 2000, cuisines: [], dietary: [], openNow: false, timeOfDay: '' };
     budgetSlider.value = 4; budgetLabel.textContent = 'Any';
     distanceSlider.value = 2000; distanceLabel.textContent = '2 km+';
     cuisineFilters.querySelectorAll('input').forEach(i => i.checked = false);
     dietaryFilters.querySelectorAll('input').forEach(i => i.checked = false);
     sortSelect.value = 'distance'; state.sortBy = 'distance';
+    openNowToggle.checked = false;
+    timeOfDaySelect.value = '';
     render();
   });
 

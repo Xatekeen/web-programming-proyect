@@ -1,0 +1,162 @@
+window.SEJONG_DATA = window.SEJONG_DATA || {};
+window.SEJONG_DATA.guides = [
+  {
+    "id": "getting-started",
+    "icon": "🚀",
+    "title": "Getting Started",
+    "items": [
+      {
+        "q": "First-day checklist",
+        "a": "1) Collect your dorm key/access card from the housing office. 2) Visit the International Office to confirm enrollment. 3) Get your student ID card (Sejong app or Student Union desk). 4) Buy a SIM card or eSIM. 5) Open a Korean bank account. 6) Get a T-money transit card. 7) Register your address at the local 동(dong) office within 14 days if required for your visa."
+      },
+      {
+        "q": "Visa & Alien Registration Card (ARC)",
+        "a": "Apply for your ARC at the Seoul Immigration Office (Mok-dong) within 90 days of arrival — book an appointment online via Hi Korea. Bring passport, visa, photo, enrollment certificate, and housing contract. The International Office can help with documents."
+      },
+      {
+        "q": "Opening a bank account",
+        "a": "KB Kookmin Bank (Gunja Branch) and Hana Bank (Konkuk Branch) are popular with international students and assist with English forms. Bring your passport, ARC (or proof of application), and a certificate of enrollment. You'll get a debit card usable for T-money top-ups and online payments."
+      },
+      {
+        "q": "Getting a phone SIM/eSIM",
+        "a": "Major carriers (SKT, KT, LG U+) offer prepaid SIMs for foreigners at the airport or city stores; budget MVNOs (e.g. via convenience-store kiosks) are cheaper for data-only plans. You'll need your passport/ARC. eSIMs can often be purchased online before arrival."
+      },
+      {
+        "q": "Setting up Korean apps",
+        "a": "Install: KakaoTalk (messaging — essential), Naver Map or KakaoMap (navigation, more accurate than Google Maps in Korea), Papago (translation), Coupang/Baemin/Yogiyo (delivery), and the Sejong University app for cafeteria menus and notices."
+      }
+    ]
+  },
+  {
+    "id": "living-here",
+    "icon": "🏠",
+    "title": "Living Here",
+    "items": [
+      {
+        "q": "On-campus vs off-campus housing",
+        "a": "Dormitories are convenient and cheaper but have curfews/roommates. Off-campus officetels near the back gate or Gunja/Konkuk areas offer more privacy. Sejong Dream Housing Agency (near campus) specializes in helping international students find off-campus rooms."
+      },
+      {
+        "q": "T-money transit card",
+        "a": "Buy a T-money card at any convenience store (CU, GS25, 7-Eleven) for ~₩4,000 and top it up with cash or card. Use it for buses, subway, and even some taxis and convenience stores. Students can apply for a discounted youth/student fare with the right registration."
+      },
+      {
+        "q": "Weather & what to pack",
+        "a": "Seoul has four distinct seasons: hot, humid summers (Jun-Aug, 25-33°C), cold dry winters (Dec-Feb, often below 0°C with wind chill), and mild spring/autumn. Bring a heavy winter coat, thermal layers, and an umbrella for the summer monsoon (late June-July)."
+      },
+      {
+        "q": "Grocery shopping & marts",
+        "a": "For everyday groceries, Gunja Mart and Rizvan/Halal Heaven Mart (halal options) are near the back/side gates. For bulk shopping and better prices, E-mart (Konkuk Branch, Exit 5) is Korea's largest supermarket chain — check for 'No Brand' value items and after-9PM clearance discounts."
+      },
+      {
+        "q": "Doing laundry & utilities",
+        "a": "Most dorms have coin or card laundromats in the building. Off-campus officetels usually include a washing machine; dryers are less common — many Koreans air-dry clothes. Utilities (electricity, water, gas, internet) are often billed separately for off-campus housing — ask your landlord about averages before signing."
+      },
+      {
+        "q": "Recycling & trash rules",
+        "a": "Korea has strict waste separation: general waste goes in designated pay-per-bag (종량제) bags sold at convenience stores, while recyclables (plastic, paper, cans, glass) and food waste are sorted separately. Ask your dorm RA or landlord for the building's collection schedule."
+      }
+    ]
+  },
+  {
+    "id": "social",
+    "icon": "🎉",
+    "title": "Social Life",
+    "items": [
+      {
+        "q": "Joining clubs & societies",
+        "a": "Check the Clubs tab on this app for international-friendly clubs (ISA, cultural, sports, academic). Most clubs recruit at the start of each semester — follow their social media or visit the Student Union booths during orientation week."
+      },
+      {
+        "q": "Using the library",
+        "a": "The Sejong University Central Library has individual study booths, group rooms (bookable online), and English-language sections. Bring your student ID to borrow books and access study rooms. Quiet floors are strictly enforced."
+      },
+      {
+        "q": "Sports & gym facilities",
+        "a": "The campus gym and sports fields are available to enrolled students, often free or low-cost with your student ID. Sejong Football Club and other sports clubs hold regular pickup sessions — check the Clubs tab for schedules."
+      },
+      {
+        "q": "Weekend activities near campus",
+        "a": "Children's Grand Park (free entry, near subway Line 7) is great for walks and picnics. Konkuk University area (one stop away) has shopping, cafes, and a lively student nightlife scene. Seoul's major attractions (Hongdae, Myeongdong, Han River parks) are easily reachable by subway."
+      },
+      {
+        "q": "Making local & international friends",
+        "a": "Language exchange meetups (often organized by ISA or K-Culture Club), dorm common rooms, and group chats (KakaoTalk) for your major/cohort are the easiest ways to meet people. Many cafes near campus host casual language-exchange evenings."
+      }
+    ]
+  },
+  {
+    "id": "health-safety",
+    "icon": "🏥",
+    "title": "Health & Safety",
+    "items": [
+      {
+        "q": "Hospitals with English-speaking staff",
+        "a": "Konkuk University Hospital (900m from campus, 02-2030-5114) has an international clinic with English-speaking staff and handles emergencies. The on-campus Sejong Campus Health Center (02-3408-3333) handles basic checkups and first aid."
+      },
+      {
+        "q": "Emergency numbers",
+        "a": "112 = Police. 119 = Fire/Ambulance (medical emergencies). 1339 = Korea Disease Control Helpline (also has English support). Save these in your phone — operators can often connect you to an English interpreter line."
+      },
+      {
+        "q": "National Health Insurance (NHIS)",
+        "a": "International students staying 6+ months are usually automatically enrolled in NHIS, with premiums billed monthly. NHIS covers a large portion of hospital and pharmacy costs. Bring your ARC when visiting clinics so they can check your coverage."
+      },
+      {
+        "q": "Pharmacies & buying medicine",
+        "a": "Pharmacies (약국) are everywhere and pharmacists often speak some English. Common over-the-counter medicines (painkillers, cold medicine) are available without prescription, but some Western medications (e.g. certain decongestants) are restricted — check before bringing large quantities from home."
+      },
+      {
+        "q": "Staying safe",
+        "a": "Seoul is generally very safe, even at night, but stay alert near nightlife areas late at night, keep valuables secure on public transport, and register with your home country's embassy if recommended. Save the International Office's emergency contact number."
+      }
+    ]
+  },
+  {
+    "id": "faqs",
+    "icon": "❓",
+    "title": "FAQs",
+    "items": [
+      {
+        "q": "How do I check the cafeteria menu?",
+        "a": "Open the Sejong University app and check the daily menu for the Student Union or Jinkwan Hall cafeterias — menus change daily and meals cost around ₩3,500-7,000."
+      },
+      {
+        "q": "How do I find halal food near campus?",
+        "a": "Use the Restaurants tab and filter by 'halal' dietary tag — options include Muslima Halal Uzbek Kitchen, Big Brother, Halal Pizza Burger, Kebabshi and several kebab shops near the back gate, plus Royal Indian near Konkuk Station."
+      },
+      {
+        "q": "How do I get from campus to Konkuk Station?",
+        "a": "Walk roughly 15-20 minutes via Hwayang street toward subway Exit 3, or take a short bus ride (1-2 stops). Konkuk University Station (Line 2 & 7) connects to most of Seoul."
+      },
+      {
+        "q": "How do I top up my T-money card?",
+        "a": "At any convenience store counter or subway station top-up machine — insert cash or pay by card and tell the clerk how much to add."
+      },
+      {
+        "q": "How do I do laundry if my dorm has no machine?",
+        "a": "Use a nearby coin laundromat (코인세탁); several are located around the back gate and Gunja area — search 'coin laundry' on Naver Map."
+      },
+      {
+        "q": "How do I get a part-time job as an international student?",
+        "a": "D-2 visa holders need permission for part-time work (시간제 취업 허가) from Immigration via the International Office — there are weekly hour limits depending on your year and Korean level."
+      },
+      {
+        "q": "How do I find cheap food near campus?",
+        "a": "Check the Budget Calculator and sort restaurants by price (₩). On-campus cafeterias (Student Union, Jinkwan Hall) and back-gate spots like Sejong Ramen or D.Deli are typically under ₩6,000."
+      },
+      {
+        "q": "How do I report a problem in my dorm?",
+        "a": "Contact your dorm's administration office or RA directly — most issues (heating, wifi, repairs) are resolved within a few days. For urgent issues, also notify the International Office."
+      },
+      {
+        "q": "How do I extend my visa / renew my ARC?",
+        "a": "Book an appointment via the Hi Korea website at least a few weeks before expiry, gather your enrollment certificate, passport, ARC, and bank statement, and visit the Seoul Immigration Office. The International Office can review your documents beforehand."
+      },
+      {
+        "q": "How do I find study spaces outside the library?",
+        "a": "Many cafes near the back gate (Ediya, Compose Coffee, Mega Coffee) are popular for studying and have wifi and outlets — just be considerate during busy hours."
+      }
+    ]
+  }
+];

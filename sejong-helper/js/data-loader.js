@@ -12,6 +12,7 @@ const DataLoader = (() => {
       restaurants: data.restaurants || [],
       clubs: data.clubs || [],
       services: data.services || [],
+      guides: data.guides || [],
     };
     return cache;
   }

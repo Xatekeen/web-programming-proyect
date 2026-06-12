@@ -42,6 +42,11 @@ const UIManager = (() => {
       tagsHtml = (item.tags || []).map(t => `<span>${t}</span>`).join('');
     }
 
+    const statusHtml = (typeof FeaturesUI !== 'undefined' && item.hours) ? FeaturesUI.statusBadgeHtml(item) : '';
+    const avgRev = (typeof ReviewsManager !== 'undefined') ? ReviewsManager.averageRating(item.id) : null;
+    const revCount = (typeof ReviewsManager !== 'undefined') ? ReviewsManager.forPlace(item.id).length : 0;
+    const revHtml = revCount ? `<span class="review-mini">💬 ${revCount} (${avgRev ? avgRev.toFixed(1) : '—'}★)</span>` : '';
+
     return `
       <article class="card" data-id="${item.id}" data-kind="${kind}">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;">
@@ -49,6 +54,7 @@ const UIManager = (() => {
           <button class="fav-btn" data-fav="${item.id}" aria-label="Toggle favorite">${fav ? '★' : '☆'}</button>
         </div>
         <p class="sub">${sub}</p>
+        ${statusHtml ? `<div class="status-row">${statusHtml}${revHtml}</div>` : (revHtml ? `<div class="status-row">${revHtml}</div>` : '')}
         <div class="meta">${metaHtml}</div>
         <div class="tags">${tagsHtml}</div>
       </article>`;
@@ -63,7 +69,11 @@ const UIManager = (() => {
   }
 
   function renderModal(item, kind) {
-    let html = `<h2>${item.name}</h2><p class="sub">${item.nameEnglish || item.category || item.type || ''}</p><dl>`;
+    let html = `<h2>${item.name}</h2><p class="sub">${item.nameEnglish || item.category || item.type || ''}</p>`;
+    if (item.hours && typeof FeaturesUI !== 'undefined') {
+      html += `<div class="status-row">${FeaturesUI.statusBadgeHtml(item)}</div>`;
+    }
+    html += `<dl>`;
     if (kind === 'restaurants') {
       html += `<dt>Address</dt><dd>${item.address}</dd>
         <dt>Distance</dt><dd>${item.distance_meters} m from campus</dd>
@@ -86,6 +96,41 @@ const UIManager = (() => {
         <dt>Notes</dt><dd>${item.notes}</dd>`;
     }
     html += `</dl>`;
+
+    // Collections + personal note
+    if (typeof CollectionsManager !== 'undefined') {
+      const cols = CollectionsManager.getAll();
+      const notes = CollectionsManager.getNotes();
+      html += `<div class="modal-extra">
+        <label class="modal-note-label">My note
+          <textarea class="modal-note" data-note-for="${item.id}" placeholder="Add a personal note...">${notes[item.id] || ''}</textarea>
+        </label>
+        ${cols.length ? `<label>Save to collection
+          <select class="modal-collection-select" data-save-for="${item.id}">
+            <option value="">Choose a collection...</option>
+            ${cols.map(c => `<option value="${c.id}">${c.name}</option>`).join('')}
+          </select>
+        </label>` : `<p class="muted">Create a collection in the Collections tab to save places to lists.</p>`}
+      </div>`;
+    }
+
+    // Reviews summary
+    if (typeof ReviewsManager !== 'undefined') {
+      const revs = ReviewsManager.forPlace(item.id);
+      const avg = ReviewsManager.averageRating(item.id);
+      html += `<div class="modal-reviews">
+        <h3>Student Reviews ${avg ? `(★ ${avg.toFixed(1)} avg, ${revs.length})` : ''}</h3>
+        ${revs.length ? revs.slice(0,5).map(r => `
+          <div class="review-item">
+            <div class="review-item-head">
+              <span class="badge cat-${r.category}">${r.category}</span>
+              ${r.rating ? `<span>${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>` : ''}
+            </div>
+            <p>${r.comment}</p>
+            <span class="muted">${r.author} · ${new Date(r.timestamp).toLocaleDateString()}</span>
+          </div>`).join('') : `<p class="muted">No reviews yet. Add one from the Reviews tab.</p>`}
+      </div>`;
+    }
     return html;
   }
 

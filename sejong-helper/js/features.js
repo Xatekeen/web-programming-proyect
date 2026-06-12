@@ -238,13 +238,102 @@ const SettingsManager = (() => {
   const I18N = {
     en: { restaurants:'Restaurants', clubs:'Clubs', services:'Services', favorites:'Favorites',
       guides:'Guides', reviews:'Reviews', budget:'Budget', compare:'Compare', dashboard:'Dashboard',
-      collections:'Collections', settings:'Settings', map:'Map' },
+      collections:'Collections', settings:'Settings', map:'Map',
+      tagline:'International Student Guide · Gwangjin-gu, Seoul',
+      searchPlaceholder:'Search restaurants, clubs, services...',
+      filtersTitle:'Filters', budgetMax:'Budget (max ₩)', any:'Any',
+      cuisine:'Cuisine', dietary:'Dietary', openNow:'Open now only',
+      anyTime:'Any time', pastMidnight:'Past midnight (00:00-05:00)',
+      earlyMorning:'Early morning (06:00-10:00)', lunchHours:'Lunch hours (11:00-14:00)',
+      maxDistance:'Max distance', sortBy:'Sort by', sortDistance:'Distance',
+      sortRating:'Rating', sortPrice:'Price (low to high)', sortClosing:'Closing soon',
+      resetFilters:'Reset filters', results:'results', result:'result',
+      emptyResults:'No results found. Try adjusting your filters.',
+      noFavorites:'No favorites yet. Tap the ☆ on any item to save it here.',
+      chatGreeting:'Hi! Ask me about restaurants, clubs, or services near campus — e.g. "vegan food near campus" or "halal restaurants under ₩₩".',
+      chatPlaceholder:'Ask a question...', chatSend:'Send', chatTitle:'Sejong Helper Assistant',
+      timeOfDay:'Time of day',
+      addr:'Address', distFromCampus:'Distance', ratingLbl:'Rating', priceLbl:'Price',
+      phoneLbl:'Phone', hoursLbl:'Hours', notesLbl:'Notes', meetingLbl:'Meeting',
+      contactLbl:'Contact', languagesLbl:'Languages', membersLbl:'Members', aboutLbl:'About' },
     eu: { restaurants:'Jatetxeak', clubs:'Klubak', services:'Zerbitzuak', favorites:'Gogokoak',
       guides:'Gidak', reviews:'Iruzkinak', budget:'Aurrekontua', compare:'Konparatu', dashboard:'Laburpena',
-      collections:'Bildumak', settings:'Ezarpenak', map:'Mapa' },
+      collections:'Bildumak', settings:'Ezarpenak', map:'Mapa',
+      tagline:'Nazioarteko Ikasleen Gida · Gwangjin-gu, Seoul',
+      searchPlaceholder:'Bilatu jatetxeak, klubak, zerbitzuak...',
+      filtersTitle:'Iragazkiak', budgetMax:'Aurrekontua (geh. ₩)', any:'Edozein',
+      cuisine:'Sukaldaritza', dietary:'Dieta', openNow:'Orain irekita daudenak',
+      anyTime:'Edozein ordu', pastMidnight:'Gauerditik aurrera (00:00-05:00)',
+      earlyMorning:'Goizean goiz (06:00-10:00)', lunchHours:'Bazkalordua (11:00-14:00)',
+      maxDistance:'Distantzia max.', sortBy:'Ordenatu', sortDistance:'Distantzia',
+      sortRating:'Balorazioa', sortPrice:'Prezioa (txikitik handira)', sortClosing:'Laster ixten',
+      resetFilters:'Garbitu iragazkiak', results:'emaitza', result:'emaitza',
+      emptyResults:'Ez da emaitzarik aurkitu. Aldatu iragazkiak.',
+      noFavorites:'Oraindik ez duzu gogokorik. Sakatu ☆ elementu batean gehitzeko.',
+      chatGreeting:'Kaixo! Galdetu jatetxe, klub edo zerbitzuei buruz — adib. "halal jatetxeak ₩₩ azpitik".',
+      chatPlaceholder:'Idatzi galdera bat...', chatSend:'Bidali', chatTitle:'Sejong Helper Laguntzailea',
+      timeOfDay:'Eguneko ordua',
+      addr:'Helbidea', distFromCampus:'Distantzia', ratingLbl:'Balorazioa', priceLbl:'Prezioa',
+      phoneLbl:'Telefonoa', hoursLbl:'Ordutegia', notesLbl:'Oharrak', meetingLbl:'Bilera',
+      contactLbl:'Kontaktua', languagesLbl:'Hizkuntzak', membersLbl:'Kideak', aboutLbl:'Honi buruz' },
     ko: { restaurants:'식당', clubs:'동아리', services:'서비스', favorites:'즐겨찾기',
       guides:'가이드', reviews:'리뷰', budget:'예산', compare:'비교', dashboard:'대시보드',
-      collections:'모음', settings:'설정', map:'지도' }
+      collections:'모음', settings:'설정', map:'지도',
+      tagline:'국제 학생 가이드 · 서울 광진구',
+      searchPlaceholder:'식당, 동아리, 서비스 검색...',
+      filtersTitle:'필터', budgetMax:'예산 (최대 ₩)', any:'전체',
+      cuisine:'요리 종류', dietary:'식이 옵션', openNow:'현재 영업중만 보기',
+      anyTime:'전체 시간', pastMidnight:'자정 이후 (00:00-05:00)',
+      earlyMorning:'아침 일찍 (06:00-10:00)', lunchHours:'점심 시간 (11:00-14:00)',
+      maxDistance:'최대 거리', sortBy:'정렬', sortDistance:'거리',
+      sortRating:'평점', sortPrice:'가격 (낮은순)', sortClosing:'곧 마감',
+      resetFilters:'필터 초기화', results:'개 결과', result:'개 결과',
+      emptyResults:'결과가 없습니다. 필터를 조정해보세요.',
+      noFavorites:'즐겨찾기가 없습니다. 항목의 ☆를 눌러 추가하세요.',
+      chatGreeting:'안녕하세요! 캠퍼스 근처 식당, 동아리, 서비스에 대해 물어보세요 — 예: "할랄 음식 추천".',
+      chatPlaceholder:'질문을 입력하세요...', chatSend:'전송', chatTitle:'세종 도우미 어시스턴트',
+      timeOfDay:'시간대',
+      addr:'주소', distFromCampus:'거리', ratingLbl:'평점', priceLbl:'가격',
+      phoneLbl:'전화번호', hoursLbl:'영업시간', notesLbl:'참고', meetingLbl:'모임',
+      contactLbl:'연락처', languagesLbl:'언어', membersLbl:'회원수', aboutLbl:'소개' },
+    zh: { restaurants:'餐厅', clubs:'社团', services:'服务', favorites:'收藏',
+      guides:'指南', reviews:'点评', budget:'预算', compare:'对比', dashboard:'概览',
+      collections:'收藏夹', settings:'设置', map:'地图',
+      tagline:'国际学生指南 · 首尔广津区',
+      searchPlaceholder:'搜索餐厅、社团、服务...',
+      filtersTitle:'筛选', budgetMax:'预算 (最高 ₩)', any:'不限',
+      cuisine:'菜系', dietary:'饮食偏好', openNow:'仅显示营业中',
+      anyTime:'任意时间', pastMidnight:'凌晨时段 (00:00-05:00)',
+      earlyMorning:'清晨 (06:00-10:00)', lunchHours:'午餐时段 (11:00-14:00)',
+      maxDistance:'最大距离', sortBy:'排序', sortDistance:'距离',
+      sortRating:'评分', sortPrice:'价格（从低到高）', sortClosing:'即将关闭',
+      resetFilters:'重置筛选', results:'个结果', result:'个结果',
+      emptyResults:'没有找到结果，请调整筛选条件。',
+      noFavorites:'还没有收藏。点击 ☆ 添加到收藏。',
+      chatGreeting:'你好！可以问我关于校园附近餐厅、社团或服务的问题 — 例如"附近的清真餐厅"。',
+      chatPlaceholder:'输入问题...', chatSend:'发送', chatTitle:'世宗助手',
+      timeOfDay:'时间段',
+      addr:'地址', distFromCampus:'距离', ratingLbl:'评分', priceLbl:'价格',
+      phoneLbl:'电话', hoursLbl:'营业时间', notesLbl:'备注', meetingLbl:'聚会时间',
+      contactLbl:'联系方式', languagesLbl:'语言', membersLbl:'成员数', aboutLbl:'简介' },
+    vi: { restaurants:'Nhà hàng', clubs:'Câu lạc bộ', services:'Dịch vụ', favorites:'Yêu thích',
+      guides:'Hướng dẫn', reviews:'Đánh giá', budget:'Ngân sách', compare:'So sánh', dashboard:'Tổng quan',
+      collections:'Bộ sưu tập', settings:'Cài đặt', map:'Bản đồ' },
+    ja: { restaurants:'レストラン', clubs:'サークル', services:'サービス', favorites:'お気に入り',
+      guides:'ガイド', reviews:'レビュー', budget:'予算', compare:'比較', dashboard:'ダッシュボード',
+      collections:'コレクション', settings:'設定', map:'地図' },
+    ru: { restaurants:'Рестораны', clubs:'Клубы', services:'Услуги', favorites:'Избранное',
+      guides:'Гиды', reviews:'Отзывы', budget:'Бюджет', compare:'Сравнить', dashboard:'Обзор',
+      collections:'Коллекции', settings:'Настройки', map:'Карта' },
+    mn: { restaurants:'Рестораны', clubs:'Клубууд', services:'Үйлчилгээ', favorites:'Дуртай',
+      guides:'Гарын авлага', reviews:'Сэтгэгдэл', budget:'Төсөв', compare:'Харьцуулах', dashboard:'Хянах самбар',
+      collections:'Цуглуулга', settings:'Тохиргоо', map:'Газрын зураг' },
+    uz: { restaurants:'Restoranlar', clubs:'Klublar', services:'Xizmatlar', favorites:'Sevimlilar',
+      guides:'Qoʻllanmalar', reviews:'Sharhlar', budget:'Byudjet', compare:'Solishtirish', dashboard:'Boshqaruv paneli',
+      collections:'Toʻplamlar', settings:'Sozlamalar', map:'Xarita' },
+    ar: { restaurants:'مطاعم', clubs:'أندية', services:'خدمات', favorites:'المفضلة',
+      guides:'أدلة', reviews:'تقييمات', budget:'الميزانية', compare:'مقارنة', dashboard:'لوحة المعلومات',
+      collections:'مجموعات', settings:'الإعدادات', map:'الخريطة' }
   };
   function t(key) {
     const lang = get().language;
@@ -722,8 +811,15 @@ const FeaturesUI = (() => {
           <label>Language
             <select id="setLanguage">
               <option value="en" ${s.language==='en'?'selected':''}>English</option>
-              <option value="eu" ${s.language==='eu'?'selected':''}>Euskara</option>
               <option value="ko" ${s.language==='ko'?'selected':''}>한국어</option>
+              <option value="zh" ${s.language==='zh'?'selected':''}>中文</option>
+              <option value="vi" ${s.language==='vi'?'selected':''}>Tiếng Việt</option>
+              <option value="ja" ${s.language==='ja'?'selected':''}>日本語</option>
+              <option value="ru" ${s.language==='ru'?'selected':''}>Русский</option>
+              <option value="mn" ${s.language==='mn'?'selected':''}>Монгол</option>
+              <option value="uz" ${s.language==='uz'?'selected':''}>O'zbek</option>
+              <option value="ar" ${s.language==='ar'?'selected':''}>العربية</option>
+              <option value="eu" ${s.language==='eu'?'selected':''}>Euskara</option>
             </select>
           </label>
           <label class="checkbox-row">

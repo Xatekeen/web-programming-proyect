@@ -62,38 +62,40 @@ const UIManager = (() => {
 
   function renderCards(container, items, kind) {
     if (!items.length) {
-      container.innerHTML = `<div class="empty-state">No results found. Try adjusting your filters.</div>`;
+      const msg = (typeof SettingsManager !== 'undefined') ? SettingsManager.t('emptyResults') : 'No results found. Try adjusting your filters.';
+      container.innerHTML = `<div class="empty-state">${msg}</div>`;
       return;
     }
     container.innerHTML = items.map(item => renderCard(item, kind)).join('');
   }
 
   function renderModal(item, kind) {
+    const t = (typeof SettingsManager !== 'undefined') ? SettingsManager.t : (k) => k;
     let html = `<h2>${item.name}</h2><p class="sub">${item.nameEnglish || item.category || item.type || ''}</p>`;
     if (item.hours && typeof FeaturesUI !== 'undefined') {
       html += `<div class="status-row">${FeaturesUI.statusBadgeHtml(item)}</div>`;
     }
     html += `<dl>`;
     if (kind === 'restaurants') {
-      html += `<dt>Address</dt><dd>${item.address}</dd>
-        <dt>Distance</dt><dd>${item.distance_meters} m from campus</dd>
-        <dt>Rating</dt><dd>★ ${item.rating}</dd>
-        <dt>Price</dt><dd>${priceLabel(item.priceLevel)}</dd>
-        <dt>Phone</dt><dd>${item.phone}</dd>
-        <dt>Hours</dt><dd>${Object.entries(item.hours || {}).map(([k,v]) => `${k}: ${v}`).join('<br>')}</dd>
-        <dt>Notes</dt><dd>${item.notes}</dd>`;
+      html += `<dt>${t('addr')}</dt><dd>${item.address}</dd>
+        <dt>${t('distFromCampus')}</dt><dd>${item.distance_meters} m</dd>
+        <dt>${t('ratingLbl')}</dt><dd>★ ${item.rating}</dd>
+        <dt>${t('priceLbl')}</dt><dd>${priceLabel(item.priceLevel)}</dd>
+        <dt>${t('phoneLbl')}</dt><dd>${item.phone}</dd>
+        <dt>${t('hoursLbl')}</dt><dd>${Object.entries(item.hours || {}).map(([k,v]) => `${k}: ${v}`).join('<br>')}</dd>
+        <dt>${t('notesLbl')}</dt><dd>${item.notes}</dd>`;
     } else if (kind === 'clubs') {
-      html += `<dt>Meeting</dt><dd>${item.meetingTime}</dd>
-        <dt>Contact</dt><dd>${item.contact}</dd>
-        <dt>Languages</dt><dd>${(item.languages||[]).join(', ')}</dd>
-        <dt>Members</dt><dd>${item.members}</dd>
-        <dt>About</dt><dd>${item.description}</dd>`;
+      html += `<dt>${t('meetingLbl')}</dt><dd>${item.meetingTime}</dd>
+        <dt>${t('contactLbl')}</dt><dd>${item.contact}</dd>
+        <dt>${t('languagesLbl')}</dt><dd>${(item.languages||[]).join(', ')}</dd>
+        <dt>${t('membersLbl')}</dt><dd>${item.members}</dd>
+        <dt>${t('aboutLbl')}</dt><dd>${item.description}</dd>`;
     } else if (kind === 'services') {
-      html += `<dt>Address</dt><dd>${item.address}</dd>
-        <dt>Distance</dt><dd>${item.distance_meters} m</dd>
-        <dt>Phone</dt><dd>${item.phone}</dd>
-        <dt>Hours</dt><dd>${Object.entries(item.hours || {}).map(([k,v]) => `${k}: ${v}`).join('<br>')}</dd>
-        <dt>Notes</dt><dd>${item.notes}</dd>`;
+      html += `<dt>${t('addr')}</dt><dd>${item.address}</dd>
+        <dt>${t('distFromCampus')}</dt><dd>${item.distance_meters} m</dd>
+        <dt>${t('phoneLbl')}</dt><dd>${item.phone}</dd>
+        <dt>${t('hoursLbl')}</dt><dd>${Object.entries(item.hours || {}).map(([k,v]) => `${k}: ${v}`).join('<br>')}</dd>
+        <dt>${t('notesLbl')}</dt><dd>${item.notes}</dd>`;
     }
     html += `</dl>`;
 

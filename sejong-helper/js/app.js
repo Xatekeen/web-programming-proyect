@@ -47,12 +47,44 @@
     dashboard: '📊', collections: '📌', settings: '⚙️'
   };
   function applyLanguage() {
+    const t = SettingsManager.t;
     tabs.forEach(tab => {
       const key = tab.dataset.tab;
       const emoji = TAB_EMOJI[key] || '';
-      tab.textContent = `${emoji} ${SettingsManager.t(key)}`;
+      tab.textContent = `${emoji} ${t(key)}`;
     });
-    mapToggle.textContent = `🗺️ ${SettingsManager.t('map')}`;
+    mapToggle.textContent = `🗺️ ${t('map')}`;
+
+    const setText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    const setPlaceholder = (id, val) => { const el = document.getElementById(id); if (el) el.placeholder = val; };
+
+    setText('brandTagline', t('tagline'));
+    setPlaceholder('searchInput', t('searchPlaceholder'));
+    setText('filtersTitle', t('filtersTitle'));
+    setText('cuisineLegend', t('cuisine'));
+    setText('dietaryLegend', t('dietary'));
+    setText('openNowLabel', `⏰ ${t('openNow')}`);
+    setText('timeOfDayLabel', t('timeOfDay'));
+    setText('optAnyTime', t('anyTime'));
+    setText('optPastMidnight', t('pastMidnight'));
+    setText('optEarlyMorning', t('earlyMorning'));
+    setText('optLunch', t('lunchHours'));
+    setText('maxDistanceLabel', t('maxDistance'));
+    setText('sortByLabel', t('sortBy'));
+    setText('optSortDistance', t('sortDistance'));
+    setText('optSortRating', t('sortRating'));
+    setText('optSortPrice', t('sortPrice'));
+    setText('optSortClosing', t('sortClosing'));
+    setText('resetFilters', t('resetFilters'));
+    setPlaceholder('guideSearchInput', t('searchPlaceholder'));
+    setText('chatTitle', t('chatTitle'));
+    setText('chatGreeting', t('chatGreeting'));
+    setPlaceholder('chatInput', t('chatPlaceholder'));
+    setText('chatSendBtn', t('chatSend'));
+
+    // Re-sync the budget-slider "Any" label if it's at max
+    if (+budgetSlider.value >= 4) budgetLabel.textContent = t('any');
+    if (+distanceSlider.value >= 2000) distanceLabel.textContent = '2 km+';
   }
 
   UIManager.initTheme();
@@ -111,12 +143,12 @@
     if (state.activeTab === 'favorites') {
       cardsGrid.innerHTML = items.length
         ? items.map(i => UIManagerCardHtml(i, i._kind)).join('')
-        : `<div class="empty-state">No favorites yet. Tap the ☆ on any item to save it here.</div>`;
+        : `<div class="empty-state">${SettingsManager.t('noFavorites')}</div>`;
     } else {
       UIManager.renderCards(cardsGrid, items, state.activeTab);
     }
 
-    resultsCount.textContent = `${items.length} result${items.length === 1 ? '' : 's'}`;
+    resultsCount.textContent = `${items.length} ${SettingsManager.t(items.length === 1 ? 'result' : 'results')}`;
     MapHandler.setMarkers(items, openModal);
     attachCardEvents();
   }

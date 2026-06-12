@@ -113,7 +113,9 @@ legend{font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:6px;}
 /* Collections, Settings)                                       */
 /* ---------------------------------------------------------- */
 .layout.feature-mode{grid-template-columns:1fr;}
-.feature-panel{max-width:1100px;margin:0 auto;}
+.layout.feature-mode .content-pane{grid-template-columns:1fr;padding:24px 32px;}
+.feature-panel{max-width:1300px;width:100%;margin:0 auto;}
+.layout.feature-mode .cards-area{width:100%;}
 .guide-search-row{margin-bottom:12px;}
 .guide-search{width:100%;max-width:400px;padding:10px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.9rem;}
 

@@ -154,6 +154,7 @@ function createSidebar() {
       <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Close expanded menu">x</button>
     </div>
     <div class="sidebar-groups">
+      <section class="sidebar-group sidebar-group-helper"><ul><li><a href="sejong-helper/">🧭 Sejong Helper</a></li></ul></section>
       ${sidebarGroups.map((group) => `<section class="sidebar-group"><h2>${group.title}</h2><ul>${renderSidebarLinks(group.links)}</ul></section>`).join("")}
     </div>
   `;

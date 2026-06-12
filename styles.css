@@ -331,6 +331,21 @@ select {
   color: var(--red);
 }
 
+.sidebar-group-helper {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.sidebar-group-helper a {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.sidebar-group-helper a:hover,
+.sidebar-group-helper a:focus-visible {
+  color: #ffe3e3;
+}
+
 .hero {
   position: relative;
   min-height: 660px;

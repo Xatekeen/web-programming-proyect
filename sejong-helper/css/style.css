@@ -191,7 +191,19 @@ legend{font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:6px;}
 .badge.cat-recommendation{background:rgba(217,154,43,.15);color:#8a5d10;}
 
 /* Compare */
-.compare-wrap select#compareSelect{width:100%;max-width:420px;margin-top:6px;}
+.compare-wrap label{font-weight:600;font-size:.9rem;}
+.compare-wrap select#compareSelect{
+  width:100%;max-width:420px;margin-top:6px;
+  border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--surface);color:var(--text);
+  padding:6px;font-size:.88rem;font-family:inherit;
+}
+.compare-wrap select#compareSelect option{
+  padding:6px 10px;border-radius:6px;
+}
+.compare-wrap select#compareSelect option:checked{
+  background:var(--green);color:#fff;
+}
 .compare-table-wrap{overflow-x:auto;margin:16px 0;}
 .compare-table{border-collapse:collapse;width:100%;background:var(--surface);border-radius:var(--radius);overflow:hidden;}
 .compare-table th, .compare-table td{border:1px solid var(--border);padding:8px 12px;font-size:.85rem;text-align:left;}

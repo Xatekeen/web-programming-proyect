@@ -239,9 +239,9 @@ const SettingsManager = (() => {
     en: { restaurants:'Restaurants', clubs:'Clubs', services:'Services', favorites:'Favorites',
       guides:'Guides', reviews:'Reviews', budget:'Budget', compare:'Compare', dashboard:'Dashboard',
       collections:'Collections', settings:'Settings', map:'Map' },
-    es: { restaurants:'Restaurantes', clubs:'Clubes', services:'Servicios', favorites:'Favoritos',
-      guides:'Guías', reviews:'Reseñas', budget:'Presupuesto', compare:'Comparar', dashboard:'Resumen',
-      collections:'Colecciones', settings:'Ajustes', map:'Mapa' },
+    eu: { restaurants:'Jatetxeak', clubs:'Klubak', services:'Zerbitzuak', favorites:'Gogokoak',
+      guides:'Gidak', reviews:'Iruzkinak', budget:'Aurrekontua', compare:'Konparatu', dashboard:'Laburpena',
+      collections:'Bildumak', settings:'Ezarpenak', map:'Mapa' },
     ko: { restaurants:'식당', clubs:'동아리', services:'서비스', favorites:'즐겨찾기',
       guides:'가이드', reviews:'리뷰', budget:'예산', compare:'비교', dashboard:'대시보드',
       collections:'모음', settings:'설정', map:'지도' }
@@ -722,7 +722,7 @@ const FeaturesUI = (() => {
           <label>Language
             <select id="setLanguage">
               <option value="en" ${s.language==='en'?'selected':''}>English</option>
-              <option value="es" ${s.language==='es'?'selected':''}>Español</option>
+              <option value="eu" ${s.language==='eu'?'selected':''}>Euskara</option>
               <option value="ko" ${s.language==='ko'?'selected':''}>한국어</option>
             </select>
           </label>

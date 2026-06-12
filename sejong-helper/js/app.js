@@ -103,10 +103,12 @@
       (r.cuisine || []).forEach(c => cuisines.add(c));
       (r.dietary || []).forEach(d => dietary.add(d));
     });
+    const prevCuisine = new Set([...cuisineFilters.querySelectorAll('input:checked')].map(i => i.value));
+    const prevDietary = new Set([...dietaryFilters.querySelectorAll('input:checked')].map(i => i.value));
     cuisineFilters.innerHTML = [...cuisines].sort().map(c =>
-      `<label><input type="checkbox" value="${c}" data-filter="cuisine"> ${c}</label>`).join('');
+      `<label><input type="checkbox" value="${c}" data-filter="cuisine"${prevCuisine.has(c) ? ' checked' : ''}> ${SettingsManager.tagLabel(c)}</label>`).join('');
     dietaryFilters.innerHTML = [...dietary].sort().map(d =>
-      `<label><input type="checkbox" value="${d}" data-filter="dietary"> ${d}</label>`).join('');
+      `<label><input type="checkbox" value="${d}" data-filter="dietary"${prevDietary.has(d) ? ' checked' : ''}> ${SettingsManager.tagLabel(d)}</label>`).join('');
   }
 
   function getCurrentItems() {
@@ -198,7 +200,7 @@
         FeaturesUI.renderCollections(featurePanel, all, () => renderFeatureTab());
         break;
       case 'settings':
-        FeaturesUI.renderSettings(featurePanel, () => { applyLanguage(); render(); });
+        FeaturesUI.renderSettings(featurePanel, () => { applyLanguage(); buildFilterOptions(); render(); });
         break;
     }
   }

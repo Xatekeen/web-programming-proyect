@@ -38,7 +38,7 @@ const UIManager = (() => {
 
     if (kind === 'restaurants') {
       metaHtml = `<span class="price">${priceLabel(item.priceLevel)}</span><span>★ ${item.rating}</span><span>${item.distance_meters} m</span>`;
-      tagsHtml = (item.tags || []).map(t => `<span>${t}</span>`).join('');
+      tagsHtml = (item.tags || []).map(t => `<span>${SettingsManager.tagLabel(t)}</span>`).join('');
     } else if (kind === 'clubs') {
       sub = item.category;
       metaHtml = `<span>${item.meetingTime}</span>`;
@@ -46,7 +46,7 @@ const UIManager = (() => {
     } else if (kind === 'services') {
       sub = item.type;
       metaHtml = `<span>${item.distance_meters} m</span>`;
-      tagsHtml = (item.tags || []).map(t => `<span>${t}</span>`).join('');
+      tagsHtml = (item.tags || []).map(t => `<span>${SettingsManager.tagLabel(t)}</span>`).join('');
     }
 
     const statusHtml = (typeof FeaturesUI !== 'undefined' && item.hours) ? FeaturesUI.statusBadgeHtml(item) : '';

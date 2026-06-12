@@ -442,7 +442,19 @@ const SettingsManager = (() => {
     return (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key;
   }
 
-  return { get, set, formatPrice, t, DEFAULTS };
+  function humanizeTag(raw) {
+    return String(raw).split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  }
+
+  function tagLabel(raw) {
+    const lang = get().language;
+    const labels = (typeof window !== 'undefined' && window.TAG_LABELS) ? window.TAG_LABELS : {};
+    const entry = labels[raw];
+    if (entry) return entry[lang] || entry.en || humanizeTag(raw);
+    return humanizeTag(raw);
+  }
+
+  return { get, set, formatPrice, t, tagLabel, DEFAULTS };
 })();
 
 /* ---------------------------------------------------------- */
@@ -460,6 +472,13 @@ const PriceUtil = (() => {
 const FeaturesUI = (() => {
 
   /* ---------- Guides ---------- */
+  function guideLocalized(obj, baseKey) {
+    const lang = SettingsManager.get().language;
+    const i18nKey = baseKey + '_i18n';
+    if (lang !== 'en' && obj[i18nKey] && obj[i18nKey][lang]) return obj[i18nKey][lang];
+    return obj[baseKey];
+  }
+
   function renderGuides(container, data, query) {
     const guides = (data.guides || []);
     const q = (query || '').toLowerCase().trim();
@@ -469,12 +488,12 @@ const FeaturesUI = (() => {
         it.q.toLowerCase().includes(q) || it.a.toLowerCase().includes(q));
       if (!items.length) return;
       html += `<section class="guide-category">
-        <h3>${cat.icon} ${cat.title}</h3>
+        <h3>${cat.icon} ${guideLocalized(cat, 'title')}</h3>
         <div class="accordion">
           ${items.map((it, i) => `
             <details class="accordion-item">
-              <summary>${it.q}</summary>
-              <div class="accordion-body">${it.a}</div>
+              <summary>${guideLocalized(it, 'q')}</summary>
+              <div class="accordion-body">${guideLocalized(it, 'a')}</div>
             </details>`).join('')}
         </div>
       </section>`;

@@ -21,6 +21,13 @@ This project is a responsive multi-page university website reproduction built fr
 
 Open `index.html` directly in a browser. Use the navigation menu to move between the separate pages. No server or package installation is required.
 
+## Sejong Helper (sub-app)
+
+The `sejong-helper/` folder contains a separate, more advanced web app: an
+International Student Helper with maps, filters, guides, reviews, favorites,
+and 10-language support. See [sejong-helper/README.md](sejong-helper/README.md)
+for details. It's linked from the main site's "Demo" page.
+
 ## Presentation Alignment
 
 The implementation supports the final evaluation criteria:

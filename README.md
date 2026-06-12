@@ -1,39 +1,94 @@
-# Sejong University Webpage Reproduction
+# Sejong University Web Project
 
-This project is a responsive multi-page university website reproduction built from the Group 16 proposal. It focuses on HTML structure, CSS layout, responsive behavior, JavaScript interaction, accessibility, and a consistent visual style across multiple pages.
+A responsive, multi-page website for Sejong University, plus an embedded
+**Sejong Helper** app — an international-student companion with maps, search,
+filters, guides, reviews, and multi-language support.
 
-## Main Features
+## Site pages
 
-- Separate pages for Home, About, Academics, Admissions, Research, Life at Sejong, News, Contact, and Demo
-- Sticky university-style navigation with important top links
-- Expanded sidebar sitemap with Sejong-inspired grouped sublinks
-- Full-screen campus hero section with animated visual treatment
-- Quick links for admissions, programs, notices, and campus visit information
-- Academic program cards with consistent reusable styling
-- Admissions workflow and validated inquiry form
-- Animated research statistics
-- Filterable campus news cards
+- `index.html` — Home, with a hero section and quick links
+- `about.html` — Vision, history, and overview
+- `academics.html` — Colleges and program cards
+- `admissions.html` — Admissions workflow and a validated inquiry form
+- `research.html` — Animated research statistics
+- `life.html` — Student life information (housing, clubs, services, etc.)
+- `news.html` — Filterable campus news/notices (Notice, Event, Research)
+- `contact.html` — Contact information
+- `sejong-helper/` — the Sejong Helper app (see below)
+
+Shared assets: `styles.css`, `script.js`, `assets/`.
+
+## Main site features
+
+- Sticky navigation with an expanded sitemap-style sidebar
+- Full-screen animated campus hero section
 - Search dialog with in-page result suggestions
-- Demo checklist section for the live presentation
-- Responsive layout for mobile, tablet, and desktop
+- Academic program cards with consistent styling
+- Admissions inquiry form with validation
+- Animated research statistics counters
+- Filterable news cards
+- Responsive layout for mobile, tablet, and desktop, with a collapsible menu
 
-## How To Run
+## Sejong Helper app
 
-Open `index.html` directly in a browser. Use the navigation menu to move between the separate pages. No server or package installation is required.
+A separate but linked app (`sejong-helper/index.html`, reachable via "Helper"
+in the main navigation) that helps international students find restaurants,
+clubs, and services around the Gwangjin-gu campus, and offers student-life
+tools:
 
-## Sejong Helper (sub-app)
+- Interactive Leaflet map (OpenStreetMap, no API key required)
+- Tabs for Restaurants, Clubs, Services, and Favorites
+- Filters: budget, cuisine, dietary restrictions, distance, open-now, time of day
+- Sorting by distance, rating, price, or closing soon
+- Fuzzy text search across all categories
+- Favorites and custom Collections (saved in `localStorage`, with notes and CSV export)
+- Student Guides (Q&A on visas, housing, banking, transit, safety, etc.)
+- Student Reviews (community tips/warnings/ratings per place)
+- Budget Calculator, Compare Tool, and Quick Facts Dashboard
+- Light/dark mode toggle (persisted)
+- Full UI and content translated into 10 languages (English, Euskara, Korean,
+  Chinese, Vietnamese, Japanese, Russian, Mongolian, Uzbek, Arabic)
+- AI chat assistant for free-text questions (via an optional backend proxy)
 
-The `sejong-helper/` folder contains a separate, more advanced web app: an
-International Student Helper with maps, filters, guides, reviews, favorites,
-and 10-language support. See [sejong-helper/README.md](sejong-helper/README.md)
-for details. It's linked from the main site's "Demo" page.
+See [sejong-helper/README.md](sejong-helper/README.md) for its structure and
+how to run the optional AI assistant backend.
 
-## Presentation Alignment
+## How to run
 
-The implementation supports the final evaluation criteria:
+Both the main site and the Helper app are static — open `index.html` in a
+browser, or serve the project root with any static server, e.g.:
 
-- Functionality and completeness: multi-page navigation, expanded sitemap sidebar, search, filtering, form handling, counters, responsive layout
-- Quality of implementation: semantic HTML, organized CSS, accessible labels, reduced-motion support
-- Presentation clarity: clear page sections matching university website expectations
-- Live demonstration: predictable workflow through search, admissions, news filtering, and mobile menu
-- Project understanding: visible examples of HTML, CSS, JavaScript, responsive design, and UI organization
+```
+npx serve .
+```
+
+No build step or package installation is required for the site itself. The
+Sejong Helper AI assistant has an optional Node.js backend — see its README.
+
+## Project structure
+
+```
+.
+├── index.html, about.html, academics.html, admissions.html,
+│   research.html, life.html, news.html, contact.html
+├── styles.css
+├── script.js
+├── assets/                  # shared images and icons
+└── sejong-helper/           # Sejong Helper app
+    ├── index.html
+    ├── css/, js/, data/
+    ├── server.js, package.json, .env.example   # optional AI proxy
+    └── README.md
+```
+
+## Evaluation alignment
+
+- **Functionality and completeness**: multi-page navigation, sitemap sidebar,
+  search, filtering, form handling, animated counters, responsive layout,
+  plus the fully-featured Sejong Helper app
+- **Quality of implementation**: semantic HTML, organized CSS, accessible
+  labels, reduced-motion support
+- **Project understanding**: clear examples of HTML structure, CSS
+  Grid/Flexbox, JavaScript events, client-side state (`localStorage`),
+  internationalization, and map integration
+</content>

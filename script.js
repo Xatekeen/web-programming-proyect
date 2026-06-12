@@ -108,7 +108,6 @@ const sidebarGroups = [
     links: [
       { label: "Search", href: "#search" },
       { label: "Contact", href: "contact.html" },
-      { label: "Sitemap", href: "demo.html" },
       { label: "KR / EN", href: "index.html" }
     ]
   }

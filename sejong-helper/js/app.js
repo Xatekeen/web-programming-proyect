@@ -41,8 +41,23 @@
   const guideSearchInput = document.getElementById('guideSearchInput');
   const layout = document.querySelector('.layout');
 
+  const TAB_EMOJI = {
+    restaurants: '🍜', clubs: '🎉', services: '🏥', favorites: '⭐',
+    guides: '📚', reviews: '📝', budget: '💰', compare: '🔄',
+    dashboard: '📊', collections: '📌', settings: '⚙️'
+  };
+  function applyLanguage() {
+    tabs.forEach(tab => {
+      const key = tab.dataset.tab;
+      const emoji = TAB_EMOJI[key] || '';
+      tab.textContent = `${emoji} ${SettingsManager.t(key)}`;
+    });
+    mapToggle.textContent = `🗺️ ${SettingsManager.t('map')}`;
+  }
+
   UIManager.initTheme();
   MapHandler.init();
+  applyLanguage();
 
   state.data = await DataLoader.loadAll();
   buildFilterOptions();
@@ -151,7 +166,7 @@
         FeaturesUI.renderCollections(featurePanel, all, () => renderFeatureTab());
         break;
       case 'settings':
-        FeaturesUI.renderSettings(featurePanel, () => render());
+        FeaturesUI.renderSettings(featurePanel, () => { applyLanguage(); render(); });
         break;
     }
   }

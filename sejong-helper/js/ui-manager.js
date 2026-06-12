@@ -18,6 +18,13 @@ const UIManager = (() => {
     return getFavorites().includes(id);
   }
 
+  function localizedField(item, baseKey) {
+    const lang = (typeof SettingsManager !== 'undefined') ? SettingsManager.get().language : 'en';
+    const i18nKey = baseKey + '_i18n';
+    if (lang !== 'en' && item[i18nKey] && item[i18nKey][lang]) return item[i18nKey][lang];
+    return item[baseKey];
+  }
+
   function priceLabel(level) {
     return '₩'.repeat(level || 1);
   }
@@ -83,19 +90,19 @@ const UIManager = (() => {
         <dt>${t('priceLbl')}</dt><dd>${priceLabel(item.priceLevel)}</dd>
         <dt>${t('phoneLbl')}</dt><dd>${item.phone}</dd>
         <dt>${t('hoursLbl')}</dt><dd>${Object.entries(item.hours || {}).map(([k,v]) => `${k}: ${v}`).join('<br>')}</dd>
-        <dt>${t('notesLbl')}</dt><dd>${item.notes}</dd>`;
+        <dt>${t('notesLbl')}</dt><dd>${localizedField(item, 'notes')}</dd>`;
     } else if (kind === 'clubs') {
       html += `<dt>${t('meetingLbl')}</dt><dd>${item.meetingTime}</dd>
         <dt>${t('contactLbl')}</dt><dd>${item.contact}</dd>
         <dt>${t('languagesLbl')}</dt><dd>${(item.languages||[]).join(', ')}</dd>
         <dt>${t('membersLbl')}</dt><dd>${item.members}</dd>
-        <dt>${t('aboutLbl')}</dt><dd>${item.description}</dd>`;
+        <dt>${t('aboutLbl')}</dt><dd>${localizedField(item, 'description')}</dd>`;
     } else if (kind === 'services') {
       html += `<dt>${t('addr')}</dt><dd>${item.address}</dd>
         <dt>${t('distFromCampus')}</dt><dd>${item.distance_meters} m</dd>
         <dt>${t('phoneLbl')}</dt><dd>${item.phone}</dd>
         <dt>${t('hoursLbl')}</dt><dd>${Object.entries(item.hours || {}).map(([k,v]) => `${k}: ${v}`).join('<br>')}</dd>
-        <dt>${t('notesLbl')}</dt><dd>${item.notes}</dd>`;
+        <dt>${t('notesLbl')}</dt><dd>${localizedField(item, 'notes')}</dd>`;
     }
     html += `</dl>`;
 
